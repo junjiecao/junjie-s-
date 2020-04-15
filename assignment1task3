@@ -1,0 +1,17 @@
+#question 1c:
+mysql -u awkologist -p compbiol -e ’select a.gene, a.function, e.expr_value from annotation as a join expression as e on a.gene=e.gene’
+
+#question 1d:
+select metabolism from annotation where metabolism in (select metabolism from annotation group by metabolism having count(metabolism)>1);
+
+#question 2a:
+select LastName, FirstName from Member where Coach is NULL;
+
+#question 2b:
+select LastName, FirstName from Member where year(JoinDate)=2010;
+
+#question 2c:
+SELECT m.Lastname, m.FirstName, m.MemberID FROM Member m join Entry e on m.MemberID=e.MemberID WHERE NOT EXISTS  (SELECT * FROM Entry e WHERE e.MemberID = m.MemberID and e.year=2014);
+
+#question 2d:
+select m.LastName, m.FirstName, m.MemberID from Member m where not exists (select * from Entry e1   where not exists (select * from Entry e2 where e1.year=e2.year and m.MemberID=e2.MemberID));
