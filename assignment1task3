@@ -1,3 +1,9 @@
+#question 1a:
+mysqldump -u awkologist -p compbiol expression > expression.sql
+
+#question 1b:
+mysqldump -u awkologist -p compbiol annotation > annotation.sql
+
 #question 1c:
 mysql -u awkologist -p compbiol -e ’select a.gene, a.function, e.expr_value from annotation as a join expression as e on a.gene=e.gene’
 
