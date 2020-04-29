@@ -1,0 +1,28 @@
+question 1:
+a. head -1 expression.tab; awk '$2<1000' expression.tab
+
+b. head -1 annotation.tab; awk -F'\t' '/ase/' annotation.tab
+
+c. head -1 annotation.tab; awk -F'\t' '/Purine biosynthesis/ || /Pyrimidine biosynthesis/' annotation.tab
+
+question 2:
+a. scp -i busa8090_s1_2020_45772002.pem world_x.sql ubuntu@ec2-13-211-130-188.ap-southeast-2.compute.amazonaws.com:
+   mysql -u root -p
+   CREATE USER 'apple'@'localhost' IDENTIFIED BY 'appleapple';
+   GRANT ALL ON world_x.* TO apple@localhost IDENTIFIED BY "appleapple";
+   exit
+   mysql -u apple -p
+   create database world_x;
+   quit
+   mysql -u apple -p world_x < world_x.sql
+   mysql -u apple -p
+   use world_x;
+   show tables;
+b. select co.Code, co.Name, ci.name from country co join city ci on co.Capital=ci.ID where co.Code in ( select CountryCode from countrylanguage where Language="English" and Percentage>50);
+
+question 3:
+library(ggplot2)
+country<-c("US","Italy","Spain","France","UK","Belgium","Germany","Iran","Brazil","Australia")
+death<-c(17.84,45.27,50.98,35.37,32.7,64.18,7.61,7.18,2.43,6.43)
+df<-data.frame(country,death)
+ggplot(df,aes(x=reorder(country,death),death))+geom_bar(stat = 'identity',fill='blue')+ylab("deaths per 100000 poopulation")+xlab("country")+coord_flip()
