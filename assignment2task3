@@ -1,0 +1,17 @@
+question2:
+a. ggplot(merged,aes(x=long,y=lat,group=group,fill=EN.ATM.CO2E.PC))+geom_polygon()
+
+b. install.packages("devtools")
+   library(devtools)
+   install_github("DougLuke/UserNetR")
+   library(UserNetR)
+   install.packages("statnet")
+   library(statnet)
+   data(Bali)
+   namelab <- get.vertex.attribute(Bali,"vertex.names")
+   op <- par(mar=c(0,0,0,0))
+   plot(Bali,usearrows=FALSE,vertex.cex=1.5,label=namelab, displaylabels=T,vertex.col="vertex.names")
+
+
+c. rolelab <- get.vertex.attribute(Bali,"role")
+   plot(Bali,usearrows=FALSE,vertex.cex=1.5,label=rolelab, displaylabels=T,vertex.col="role")
